@@ -7,6 +7,7 @@ import {UserController} from "./controllers/UserController";
 import {GroupController} from "./controllers/GroupController";
 import {KitchenController} from "./controllers/KitchenController";
 import {LocationController} from "./controllers/LocationController";
+import {FoodController} from "./controllers/FoodController";
 
 /**
  * Connects to the Mongo Database with db connection details from Environment Variables
@@ -41,6 +42,7 @@ const initializeApp = (): express.Express => {
     GroupController.getInstance(app);
     KitchenController.getInstance(app);
     LocationController.getInstance(app);
+    FoodController.getInstance(app);
 
     return app
 }
