@@ -1,0 +1,11 @@
+# IDE config Files
+.idea
+
+# Environment Variables
+.env
+
+# Node Modules
+node_modules
+
+# Build Dirrectory
+build
