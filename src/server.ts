@@ -3,6 +3,8 @@
  */
 import express, {Request, Response} from "express";
 import mongoose from "mongoose"
+import {UserController} from "./controllers/UserController";
+import {GroupController} from "./controllers/GroupController";
 
 /**
  * Connects to the Mongo Database with db connection details from Environment Variables
@@ -14,7 +16,7 @@ const connectDatabase = (): void => {
     if (process.env.MONGODB_PORT) {
         dbUri = dbUri + process.env.MONGODB_PORT;
     }
-    console.log("Inferred DB_URI: " + process.env.MONGODB_PREFIX + "://" + process.env.MONGODB_USER
+    console.info("Inferred DB_URI: " + process.env.MONGODB_PREFIX + "://" + process.env.MONGODB_USER
         + ":*****@" + process.env.MONGODB_HOST);
 
     mongoose.connect(dbUri)
@@ -22,8 +24,21 @@ const connectDatabase = (): void => {
             console.log(err);
         });
     mongoose.connection.once("open", () => {
-        console.log("MongoDB connection established successfully");
+        console.info("MongoDB connection established successfully");
     });
+}
+
+/**
+ * Initializes the Express app and connects the Controllers to the App
+ * @return {Express} the Initialized express app
+ */
+const initializeApp = (): express.Express => {
+    const app = express();
+
+    UserController.getInstance(app);
+    GroupController.getInstance(app);
+
+    return app
 }
 
 /**
@@ -32,7 +47,7 @@ const connectDatabase = (): void => {
  */
 const startServer = (port: string | number): void => {
     connectDatabase()
-    const app = express();
+    const app = initializeApp();
 
     app.get("/up", (req: Request, res: Response) =>
         res.send("Server is Up!"));
