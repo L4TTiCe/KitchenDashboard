@@ -14,8 +14,8 @@ export class LocationDao implements LocationDaoI {
     private static locationDao: LocationDao = new LocationDao();
 
     // Prevent Initiation of Object
-    private constructor() {
-    }  // eslint-disable-line @typescript-eslint/no-empty-function
+    private constructor() {  // eslint-disable-line @typescript-eslint/no-empty-function
+    }
 
     /**
      * Returns the Singleton Instance of the KitchenDao

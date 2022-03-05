@@ -11,8 +11,8 @@ export class LocationController implements LocationControllerI {
     private static locationController: LocationController | null = null;
 
     // Prevent Initiation of Object
-    private constructor() {
-    }  // eslint-disable-line @typescript-eslint/no-empty-function
+    private constructor() {  // eslint-disable-line @typescript-eslint/no-empty-function
+    }
 
     /**
      * @param app {Express} the Express instance to attach the controller to

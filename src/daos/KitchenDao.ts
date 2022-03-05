@@ -15,8 +15,8 @@ export class KitchenDao implements KitchenDaoI {
     private static kitchenDao: KitchenDao = new KitchenDao();
 
     // Prevent Initiation of Object
-    private constructor() {
-    }  // eslint-disable-line @typescript-eslint/no-empty-function
+    private constructor() {  // eslint-disable-line @typescript-eslint/no-empty-function
+    }
 
     /**
      * Returns the Singleton Instance of the KitchenDao

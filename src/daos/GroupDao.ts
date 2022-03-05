@@ -13,8 +13,8 @@ export class GroupDao implements GroupDaoI {
     private static groupDao: GroupDao = new GroupDao();
 
     // Prevent Initiation of Object
-    private constructor() {
-    }  // eslint-disable-line @typescript-eslint/no-empty-function
+    private constructor() {  // eslint-disable-line @typescript-eslint/no-empty-function
+    }
 
     /**
      * Returns the Singleton Instance of the GroupDao

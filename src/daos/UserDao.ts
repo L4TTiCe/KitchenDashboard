@@ -13,8 +13,8 @@ export class UserDao implements UserDaoI {
     private static userDao: UserDao = new UserDao();
 
     // Prevent Initiation of Object
-    private constructor() {
-    }  // eslint-disable-line @typescript-eslint/no-empty-function
+    private constructor() { // eslint-disable-line @typescript-eslint/no-empty-function
+    }
 
     /**
      * Returns the Singleton Instance of the UserDao

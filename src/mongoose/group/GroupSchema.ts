@@ -4,7 +4,7 @@
 import mongoose from "mongoose";
 
 /**
- * The UserSchema represents how a {@link Group} is represented in the database.
+ * The GroupSchema represents how a {@link Group} is represented in the database.
  * @typedef {GroupSchema} GroupSchema
  */
 export const GroupSchema = new mongoose.Schema({
