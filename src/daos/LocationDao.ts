@@ -15,7 +15,7 @@ export class LocationDao implements LocationDaoI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * Returns the Singleton Instance of the KitchenDao
@@ -27,18 +27,19 @@ export class LocationDao implements LocationDaoI {
     }
 
     public async createSubLocation(lid: string, location: Location): Promise<object> {
+        const createdLocation = await LocationModel.create(location)
         return LocationModel
-            .updateOne({_id: lid}, {$push: {subLocations: location}});
+            .updateOne({_id: lid}, {$push: {subLocations: createdLocation._id}});
     }
 
     public async getAllLocations(): Promise<Location[]> {
         return LocationModel
-            .find();
+            .find()
     }
 
     public async getLocationById(lid: string): Promise<Location | null> {
         return LocationModel
-            .findById(lid);
+            .findById(lid)
     }
 
     public async updateLocationById(lid: string, location: Location): Promise<object> {

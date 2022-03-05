@@ -12,5 +12,18 @@ export const LocationSchema = new mongoose.Schema({
 }, {collection: "locations"});
 
 LocationSchema.add({
-    subLocations: [LocationSchema],
+    subLocations: [{type: mongoose.Schema.Types.ObjectId, ref: "LocationModel"}],
 })
+
+// Reference:
+// https://stackoverflow.com/questions/44968248/how-to-populate-documents-with-unlimited-nested-levels-using-mongoose
+function autoPopulateSubLocations(this: any, next: () => void) {  // eslint-disable-line @typescript-eslint/no-explicit-any
+    this.populate('subLocations');
+    next();
+}
+
+// Recursively populate subLocations using the pre hook.
+// https://www.mongodb.com/blog/post/introducing-version-40-mongoose-nodejs-odm
+LocationSchema
+    .pre('findOne', autoPopulateSubLocations)
+    .pre('find', autoPopulateSubLocations);

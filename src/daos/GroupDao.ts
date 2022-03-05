@@ -14,7 +14,7 @@ export class GroupDao implements GroupDaoI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * Returns the Singleton Instance of the GroupDao

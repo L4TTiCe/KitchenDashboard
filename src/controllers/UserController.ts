@@ -32,7 +32,7 @@ export class UserController implements UserControllerI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * @param app {Express} the Express instance to attach the controller to

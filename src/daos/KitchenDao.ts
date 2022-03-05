@@ -16,7 +16,7 @@ export class KitchenDao implements KitchenDaoI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * Returns the Singleton Instance of the KitchenDao
@@ -44,9 +44,8 @@ export class KitchenDao implements KitchenDaoI {
             .populate('locations');
     }
 
-    // @ts-ignore
     public async createLocation(kid: string, location: Location): Promise<object> {
-        let createdLocation = await LocationModel.create(location);
+        const createdLocation = await LocationModel.create(location);
         return KitchenModel
             .updateOne({_id: kid}, {$push: {locations: createdLocation._id}});
     }

@@ -14,7 +14,7 @@ export class UserDao implements UserDaoI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * Returns the Singleton Instance of the UserDao

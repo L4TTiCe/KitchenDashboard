@@ -5,7 +5,6 @@ import {Express, Request, Response} from "express";
 import bodyParser from "body-parser";
 import {KitchenDao} from "../daos/KitchenDao";
 import {KitchenControllerI} from "./interfaces/KitchenControllerI";
-import {Kitchen} from "../models/Kitchen";
 
 export class KitchenController implements KitchenControllerI {
     private static kitchenDao: KitchenDao;
@@ -13,7 +12,7 @@ export class KitchenController implements KitchenControllerI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * @param app {Express} the Express instance to attach the controller to

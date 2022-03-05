@@ -5,7 +5,6 @@ import {Express, Request, Response} from "express";
 import bodyParser from "body-parser";
 import {LocationDao} from "../daos/LocationDao";
 import {LocationControllerI} from "./interfaces/LocationControllerI";
-import {Location} from "../models/Location";
 
 export class LocationController implements LocationControllerI {
     private static locationDao: LocationDao;
@@ -13,7 +12,7 @@ export class LocationController implements LocationControllerI {
 
     // Prevent Initiation of Object
     private constructor() {
-    }
+    }  // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * @param app {Express} the Express instance to attach the controller to
