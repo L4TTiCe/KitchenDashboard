@@ -5,6 +5,7 @@ import express, {Request, Response} from "express";
 import mongoose from "mongoose"
 import {UserController} from "./controllers/UserController";
 import {GroupController} from "./controllers/GroupController";
+import {KitchenController} from "./controllers/KitchenController";
 
 /**
  * Connects to the Mongo Database with db connection details from Environment Variables
@@ -37,6 +38,7 @@ const initializeApp = (): express.Express => {
 
     UserController.getInstance(app);
     GroupController.getInstance(app);
+    KitchenController.getInstance(app);
 
     return app
 }
