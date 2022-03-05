@@ -4,9 +4,10 @@
 import {Kitchen} from "../models/Kitchen";
 import {KitchenModel} from "../mongoose/kitchen/KitchenModel"
 import {KitchenDaoI} from "./interfaces/KitchenDaoI";
+import {Location} from "../models/Location";
 
 /**
- * @class KitchenDao KitchenDao Implements the KitchenDaoI, with all the CRUD functionalities for the Group resource
+ * @class KitchenDao KitchenDao Implements the KitchenDaoI, with all the CRUD functionalities for the Kitchen resource
  * @property {KitchenDao} kitchenDao - Singleton DAO implementing Kitchen CRUD operations
  */
 export class KitchenDao implements KitchenDaoI {
@@ -38,6 +39,10 @@ export class KitchenDao implements KitchenDaoI {
     public async findKitchenById(kid: string): Promise<Kitchen | null> {
         return KitchenModel
             .findById(kid);
+    }
+
+    public async createLocation(kid: string, location: Location): Promise<object> {
+        return KitchenModel.updateOne({_id: kid}, {$push: {locations: location}});
     }
 
     public async updateKitchenById(kid: string, kitchen: Kitchen): Promise<object> {

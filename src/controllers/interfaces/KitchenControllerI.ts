@@ -11,6 +11,8 @@ export interface KitchenControllerI {
 
     findKitchenById(req: Request, res: Response): void;
 
+    createLocation(req: Request, res: Response): void;
+
     updateKitchenById(req: Request, res: Response): void;
 
     deleteAllKitchens(req: Request, res: Response): void;

@@ -17,7 +17,7 @@ export class KitchenController implements KitchenControllerI {
 
     /**
      * @param app {Express} the Express instance to attach the controller to
-     * @return {UserController} the singleton UserController instance
+     * @return {KitchenController} the singleton KitchenController instance
      */
     public static getInstance(app: Express): KitchenController {
         if (KitchenController.kitchenController === null) {
@@ -34,6 +34,7 @@ export class KitchenController implements KitchenControllerI {
             app.get("/kitchens", KitchenController.kitchenController.findAllKitchens);
             app.get("/kitchens/:id", KitchenController.kitchenController.findKitchenById);
             app.put("/kitchens/:id", KitchenController.kitchenController.updateKitchenById);
+            app.post("/kitchens/:id/add", KitchenController.kitchenController.createLocation);
             app.delete("/kitchens", KitchenController.kitchenController.deleteAllKitchens);
             app.delete("/kitchens/:id", KitchenController.kitchenController.deleteKitchenById);
         }
@@ -60,6 +61,14 @@ export class KitchenController implements KitchenControllerI {
         console.info(`kitchen: findKitchenById(${req.params.id})`);
 
         KitchenController.kitchenDao.findKitchenById(req.params.id)
+            .then((kitchen) => res.json(kitchen))
+            .catch((status) => res.json(status));
+    }
+
+    public createLocation(req: Request, res: Response): void {
+        console.info(`kitchen: createLocation(${req.params.id}) ${req.body}`);
+
+        KitchenController.kitchenDao.createLocation(req.params.id, req.body)
             .then((kitchen) => res.json(kitchen))
             .catch((status) => res.json(status));
     }
