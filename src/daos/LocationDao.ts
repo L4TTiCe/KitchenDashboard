@@ -31,6 +31,11 @@ export class LocationDao implements LocationDaoI {
             .updateOne({_id: lid}, {$push: {subLocations: location}});
     }
 
+    public async getAllLocations(): Promise<Location[]> {
+        return LocationModel
+            .find();
+    }
+
     public async getLocationById(lid: string): Promise<Location | null> {
         return LocationModel
             .findById(lid);
@@ -42,5 +47,9 @@ export class LocationDao implements LocationDaoI {
 
     public async deleteLocationById(lid: string): Promise<object> {
         return LocationModel.deleteOne({_id: lid})
+    }
+
+    public async deleteAllLocations(): Promise<object> {
+        return LocationModel.deleteMany();
     }
 }

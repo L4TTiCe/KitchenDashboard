@@ -2,7 +2,6 @@
  * @file Implements mongoose schema for Kitchens
  */
 import mongoose from "mongoose";
-import {LocationSchema} from "../location/LocationSchema";
 
 /**
  * The UserSchema represents how a {@link Kitchen} is represented in the database.
@@ -11,5 +10,5 @@ import {LocationSchema} from "../location/LocationSchema";
 export const KitchenSchema = new mongoose.Schema({
     name: {type: String, trim: true},
     usingSince: {type: Date, default: Date.now},
-    locations: [LocationSchema],
+    locations: [{type: mongoose.Schema.Types.ObjectId, ref: "LocationModel"}],
 }, {collection: "kitchens"})

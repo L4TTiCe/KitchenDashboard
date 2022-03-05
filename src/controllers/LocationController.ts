@@ -31,9 +31,11 @@ export class LocationController implements LocationControllerI {
             app.use(bodyParser.json());
 
             app.post("/locations/:id", LocationController.locationController.createSubLocation);
+            app.get("/locations", LocationController.locationController.getAllLocations);
             app.get("/locations/:id", LocationController.locationController.getLocationById);
             app.put("/locations/:id", LocationController.locationController.updateLocationById);
             app.delete("/locations/:id", LocationController.locationController.deleteLocationById);
+            app.delete("/locations", LocationController.locationController.deleteAllLocations);
         }
         return LocationController.locationController;
     }
@@ -43,6 +45,14 @@ export class LocationController implements LocationControllerI {
 
         LocationController.locationDao.createSubLocation(req.params.id, req.body)
             .then((location) => res.json(location))
+            .catch((status) => res.json(status));
+    }
+
+    public getAllLocations(req: Request, res: Response): void {
+        console.info(`location: getAllLocations()`);
+
+        LocationController.locationDao.getAllLocations()
+            .then((locations) => res.json(locations))
             .catch((status) => res.json(status));
     }
 
@@ -66,7 +76,15 @@ export class LocationController implements LocationControllerI {
         console.info(`location: deleteLocationById(${req.params.id})`);
 
         LocationController.locationDao.deleteLocationById(req.params.id)
-            .then((location) => res.json(location))
+            .then((status) => res.json(status))
+            .catch((status) => res.json(status));
+    }
+
+    public deleteAllLocations(req: Request, res: Response): void {
+        console.info(`location: deleteAllLocations()`);
+
+        LocationController.locationDao.deleteAllLocations()
+            .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }
 }

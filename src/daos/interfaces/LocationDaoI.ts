@@ -13,6 +13,12 @@ export interface LocationDaoI {
     createSubLocation(lid: string, location: Location): Promise<object>;
 
     /**
+     * Returns all the {@link Location}s within the DB
+     * @return {Promise<Location[]>} - promise containing all Locations
+     */
+    getAllLocations(): Promise<Location[]>;
+
+    /**
      * Retrieves the {@link Location} with the given ID
      * @param lid {string} - the ID of the location to be retrieved
      * @return {Promise<Location | null>} - promise containing the requested location
@@ -30,7 +36,13 @@ export interface LocationDaoI {
     /**
      * Deletes the {@link Location} with the given ID
      * @param lid {string} - the ID of the location to be updated
-     * @return {Promise<object>} - promise containing the status of the Update operation
+     * @return {Promise<object>} - promise containing the status of the Delete operation
      */
     deleteLocationById(lid: string): Promise<object>;
+
+    /**
+     * Deletes all the {@link Location}s
+     * @return {Promise<object>} - promise containing the status of the Delete operation
+     */
+    deleteAllLocations(): Promise<object>;
 }
