@@ -33,26 +33,23 @@ export class UserDao implements UserDaoI {
     public async findAllUsers(): Promise<User[]> {
         return UserModel
             .find()
-            .populate('group')
             .select({password: 0});
     }
 
     public async findUserById(uid: string): Promise<User> {
         return UserModel
             .findById(uid)
-            .populate('group')
             .select({password: 0});
     }
 
     public async findUserByUsername(uname: string): Promise<User> {
         return UserModel
             .findOne({username: uname})
-            .populate('group')
             .select({password: 0});
     }
 
     public async findUserByCredentials(username: string, password: string): Promise<User | null> {
-        return UserModel.findOne({username: username, password: password}).populate('group');
+        return UserModel.findOne({username: username, password: password});
     }
 
     public async updateUserById(uid: string, user: User): Promise<object> {

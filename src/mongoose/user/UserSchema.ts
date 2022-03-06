@@ -13,6 +13,6 @@ export const UserSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     email: {type: String},
-    group: {type: mongoose.Schema.Types.ObjectId, ref: "GroupModel"},
+    // group: {type: mongoose.Schema.Types.ObjectId, ref: "GroupModel"},
     joinedOn: {type: Date, default: Date.now},
 }, {collection: "users"})

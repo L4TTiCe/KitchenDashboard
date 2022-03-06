@@ -10,4 +10,5 @@ import mongoose from "mongoose";
 export const GroupSchema = new mongoose.Schema({
     name: {type: String, required: true, trim: true, unique: true},
     createdOn: {type: Date, default: Date.now},
+    members: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
 }, {collection: "groups"})

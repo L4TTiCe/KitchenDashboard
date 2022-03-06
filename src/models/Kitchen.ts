@@ -5,6 +5,7 @@ import {Location} from "./Location";
  * @typedef {Kitchen} Kitchen
  */
 export interface Kitchen {
+    _id: string
     name: string;
     locations: Location[];
 }

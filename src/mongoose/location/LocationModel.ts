@@ -6,7 +6,7 @@ import mongoose from "mongoose"
 import {LocationSchema} from "./LocationSchema"
 
 /**
- * The KitchenSchema is used for creating and reading documents of the {@link Location} type defined by the
+ * The LocationSchema is used for creating and reading documents of the {@link Location} type defined by the
  * {@link LocationSchema} from the underlying MongoDB database.
  * @typedef {LocationModel} LocationModel
  */

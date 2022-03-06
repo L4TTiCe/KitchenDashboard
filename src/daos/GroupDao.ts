@@ -31,16 +31,20 @@ export class GroupDao implements GroupDaoI {
     }
 
     public async findAllGroups(): Promise<Group[]> {
-        return GroupModel.find();
+        return GroupModel
+            .find()
+            .populate('members');
     }
 
     public async findGroupById(gid: string): Promise<Group | null> {
-        return GroupModel.findById(gid);
+        return GroupModel.findById(gid)
+            .populate('members');
     }
 
     public async findGroupByName(name: string): Promise<Group | null> {
         return GroupModel
-            .findOne({name: name});
+            .findOne({name: name})
+            .populate('members');
     }
 
     public async updateGroupById(gid: string, group: Group): Promise<object> {
@@ -54,14 +58,17 @@ export class GroupDao implements GroupDaoI {
     }
 
     public async deleteAllGroups(): Promise<object> {
-        return GroupModel.deleteMany();
+        return GroupModel
+            .deleteMany();
     }
 
     public async deleteGroupById(gid: string): Promise<object> {
-        return GroupModel.deleteOne({_id: gid});
+        return GroupModel
+            .deleteOne({_id: gid});
     }
 
     public async deleteGroupByName(name: string): Promise<object> {
-        return GroupModel.deleteOne({name: name});
+        return GroupModel
+            .deleteOne({name: name});
     }
 }
