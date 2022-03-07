@@ -11,4 +11,5 @@ export const GroupSchema = new mongoose.Schema({
     name: {type: String, required: true, trim: true, unique: true},
     createdOn: {type: Date, default: Date.now},
     members: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
+    kitchen: {type: mongoose.Schema.Types.ObjectId, ref: "KitchenModel"}
 }, {collection: "groups"})

@@ -33,17 +33,35 @@ export class GroupDao implements GroupDaoI {
     public async findAllGroups(): Promise<Group[]> {
         return GroupModel
             .find()
+            .populate({
+                path: 'kitchen',
+                populate: {
+                    path: 'locations',
+                },
+            })
             .populate('members');
     }
 
     public async findGroupById(gid: string): Promise<Group | null> {
         return GroupModel.findById(gid)
+            .populate({
+                path: 'kitchen',
+                populate: {
+                    path: 'locations',
+                },
+            })
             .populate('members');
     }
 
     public async findGroupByName(name: string): Promise<Group | null> {
         return GroupModel
             .findOne({name: name})
+            .populate({
+                path: 'kitchen',
+                populate: {
+                    path: 'locations',
+                },
+            })
             .populate('members');
     }
 
