@@ -31,4 +31,4 @@ async function autoDeleteFromGroup(this: any, next: () => void) {  // eslint-dis
 
 MembershipSchema
     .pre('save', autoInsertIntoGroup)
-    .pre('deleteOne', autoDeleteFromGroup)
+    .pre('deleteOne', autoDeleteFromGroup);
