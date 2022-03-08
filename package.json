@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/server.js",
     "dev": "nodemon src/server.ts",
-    "docker": "docker-compose up --build",
+    "docker": "docker-compose up --build --remove-orphans",
     "lint": "eslint ./src --ext .ts",
     "build": "tsc --project ./",
     "test": "echo \"Warn: no test specified\" ",
