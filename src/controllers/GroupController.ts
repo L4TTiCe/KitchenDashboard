@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import {GroupDao} from "../daos/GroupDao";
 import {GroupControllerI} from "./interfaces/GroupControllerI";
 import {Group} from "../models/Group";
+import {ObjectId} from 'bson';
 
 export class GroupController implements GroupControllerI {
     private static groupDao: GroupDao;
@@ -72,7 +73,7 @@ export class GroupController implements GroupControllerI {
     public findGroupById(req: Request, res: Response): void {
         console.info(`group: findGroupById(${req.params.id})`);
 
-        GroupController.groupDao.findGroupById(req.params.id)
+        GroupController.groupDao.findGroupById(new ObjectId(req.params.id))
             .then((group) => res.json(group))
             .catch((status) => res.json(status));
     }
@@ -88,7 +89,7 @@ export class GroupController implements GroupControllerI {
     public updateGroupById(req: Request, res: Response): void {
         console.info(`group: updateGroupById(${req.params.id}) `, req.body);
 
-        GroupController.groupDao.updateGroupById(req.params.id, req.body)
+        GroupController.groupDao.updateGroupById(new ObjectId(req.params.id), req.body)
             .then((group) => res.json(group))
             .catch((status) => res.json(status));
     }
@@ -112,7 +113,7 @@ export class GroupController implements GroupControllerI {
     public deleteGroupById(req: Request, res: Response): void {
         console.info(`group: deleteGroupById(${req.params.id})`);
 
-        GroupController.groupDao.deleteGroupById(req.params.id)
+        GroupController.groupDao.deleteGroupById(new ObjectId(req.params.id))
             .then((group) => res.json(group))
             .catch((status) => res.json(status));
     }

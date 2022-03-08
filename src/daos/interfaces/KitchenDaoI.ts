@@ -3,6 +3,7 @@
  */
 import {Kitchen} from "../../models/Kitchen";
 import {Location} from "../../models/Location";
+import {ObjectId} from 'bson';
 
 export interface KitchenDaoI {
     /**
@@ -20,26 +21,26 @@ export interface KitchenDaoI {
 
     /**
      * Returns the {@link Kitchen} with the given KID
-     * @param kid {string} - the KID of the kitchen to be returned
+     * @param kid {ObjectId} - the KID of the kitchen to be returned
      * @return {Promise<Kitchen>} - promise containing the kitchen with the given KID
      */
-    findKitchenById(kid: string): Promise<Kitchen | null>;
+    findKitchenById(kid: ObjectId): Promise<Kitchen | null>;
 
     /**
      * Adds a location to the {@link Kitchen} with the given data
-     * @param kid {string} - the parent of the location
+     * @param kid {ObjectId} - the parent of the location
      * @param location {Location} - the location to be added within the Kitchen
      * @return {Promise<Kitchen>} - promise containing the kitchen created with the given data
      */
-    createLocation(kid: string, location: Location): Promise<object>;
+    createLocation(kid: ObjectId, location: Location): Promise<object>;
 
     /**
      * Updates the {@link Kitchen} with their KID and returns the updated kitchen
-     * @param kid {string} - the KID of the kitchen to be updated
+     * @param kid {ObjectId} - the KID of the kitchen to be updated
      * @param kitchen {Kitchen} - the data to be used to update the kitchen
      * @return {Promise<Kitchen>} - promise containing the kitchen updated with the given data
      */
-    updateKitchenById(kid: string, kitchen: Kitchen): Promise<object>;
+    updateKitchenById(kid: ObjectId, kitchen: Kitchen): Promise<object>;
 
     /**
      * Deletes all Kitchens in the DB
@@ -49,8 +50,8 @@ export interface KitchenDaoI {
 
     /**
      * Deleted the {@link Kitchen} by KID
-     * @param kid {string} - the KID of the kitchen to be deleted
+     * @param kid {ObjectId} - the KID of the kitchen to be deleted
      * @return {Promise<object>} the status of the delete operation
      */
-    deleteKitchenById(kid: string): Promise<object>;
+    deleteKitchenById(kid: ObjectId): Promise<object>;
 }

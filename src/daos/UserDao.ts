@@ -4,6 +4,7 @@
 import {User} from "../models/User";
 import {UserModel} from "../mongoose/user/UserModel";
 import {UserDaoI} from "./interfaces/UserDaoI";
+import {ObjectId} from 'bson';
 
 /**
  * @class UserDao UserDao Implements the UserDaoI, with all the CRUD functionalities for the User resource
@@ -36,7 +37,7 @@ export class UserDao implements UserDaoI {
             .select({password: 0});
     }
 
-    public async findUserById(uid: string): Promise<User> {
+    public async findUserById(uid: ObjectId): Promise<User> {
         return UserModel
             .findById(uid)
             .select({password: 0});
@@ -52,7 +53,7 @@ export class UserDao implements UserDaoI {
         return UserModel.findOne({username: username, password: password});
     }
 
-    public async updateUserById(uid: string, user: User): Promise<object> {
+    public async updateUserById(uid: ObjectId, user: User): Promise<object> {
         return UserModel
             .updateOne({_id: uid}, {$set: user});
     }
@@ -67,7 +68,7 @@ export class UserDao implements UserDaoI {
             .deleteMany();
     }
 
-    public async deleteUserById(uid: string): Promise<object> {
+    public async deleteUserById(uid: ObjectId): Promise<object> {
         return UserModel
             .deleteOne({_id: uid});
     }

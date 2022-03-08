@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import {GroupModel} from "../group/GroupModel";
 
 /**
- * The LocationSchema represents how a {@link Membership} is represented in the database.
+ * The MembershipSchema represents how a {@link Membership} is represented in the database.
  * @typedef {MembershipSchema} MembershipSchema
  */
 export const MembershipSchema = new mongoose.Schema({
@@ -17,14 +17,14 @@ export const MembershipSchema = new mongoose.Schema({
 async function autoInsertIntoGroup(this: any, next: () => void) {  // eslint-disable-line @typescript-eslint/no-explicit-any
     console.log("pre-hook running for MembershipSchema - autoInsertIntoGroup");
     // return this.model('GroupModel').updateOne({_id: this.group._id}, {$push: {members: this.member._id}});
-    await GroupModel  // @ts-ignore
+    await GroupModel
         .updateOne({_id: this.group._id}, {$push: {members: this.member._id}});
     next();
 }
 
 async function autoDeleteFromGroup(this: any, next: () => void) {  // eslint-disable-line @typescript-eslint/no-explicit-any
     console.log("pre-hook running for MembershipSchema - autoDeleteFromGroup");
-    await GroupModel  // @ts-ignore
+    await GroupModel
         .updateOne({_id: this._conditions.group}, {$pull: {members: this._conditions.member}});
     next();
 }

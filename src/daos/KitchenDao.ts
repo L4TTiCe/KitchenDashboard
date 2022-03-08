@@ -6,6 +6,7 @@ import {KitchenModel} from "../mongoose/kitchen/KitchenModel"
 import {KitchenDaoI} from "./interfaces/KitchenDaoI";
 import {Location} from "../models/Location";
 import {LocationModel} from "../mongoose/location/LocationModel";
+import {ObjectId} from 'bson';
 
 /**
  * @class KitchenDao KitchenDao Implements the KitchenDaoI, with all the CRUD functionalities for the Kitchen resource
@@ -38,19 +39,19 @@ export class KitchenDao implements KitchenDaoI {
             .populate('locations');
     }
 
-    public async findKitchenById(kid: string): Promise<Kitchen | null> {
+    public async findKitchenById(kid: ObjectId): Promise<Kitchen | null> {
         return KitchenModel
             .findById(kid)
             .populate('locations');
     }
 
-    public async createLocation(kid: string, location: Location): Promise<object> {
+    public async createLocation(kid: ObjectId, location: Location): Promise<object> {
         const createdLocation = await LocationModel.create(location);
         return KitchenModel
             .updateOne({_id: kid}, {$push: {locations: createdLocation._id}});
     }
 
-    public async updateKitchenById(kid: string, kitchen: Kitchen): Promise<object> {
+    public async updateKitchenById(kid: ObjectId, kitchen: Kitchen): Promise<object> {
         return KitchenModel
             .updateOne({_id: kid}, {$set: kitchen});
     }
@@ -59,7 +60,7 @@ export class KitchenDao implements KitchenDaoI {
         return KitchenModel.deleteMany();
     }
 
-    public async deleteKitchenById(kid: string): Promise<object> {
+    public async deleteKitchenById(kid: ObjectId): Promise<object> {
         return KitchenModel
             .deleteOne({_id: kid})
     }

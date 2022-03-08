@@ -1,9 +1,11 @@
+import {ObjectId} from 'bson';
+
 /**
  * Represents a User
  * @typedef {User} User
  */
 export interface User {
-    _id: string
+    _id: ObjectId;
     username: string;
     password: string;
     firstName: string | null;

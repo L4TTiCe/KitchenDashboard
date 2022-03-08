@@ -7,6 +7,7 @@ import {MembershipDaoI} from "./interfaces/MembershipDaoI";
 import {UserDao} from "./UserDao";
 import {GroupDao} from "./GroupDao";
 import {GroupModel} from "../mongoose/group/GroupModel";
+import {ObjectId} from 'bson';
 
 /**
  * @class MembershipDao MembershipDao Implements the MembershipDaoI, with all the CRUD functionalities for the
@@ -29,7 +30,7 @@ export class MembershipDao implements MembershipDaoI {
         return this.membershipDao;
     }
 
-    public async addUserToGroupById(uid: string, gid: string): Promise<Membership> {
+    public async addUserToGroupById(uid: ObjectId, gid: ObjectId): Promise<Membership> {
         // const membership = await MembershipModel.create({member: uid, group: gid})
         // await GroupModel
         //     .updateOne({_id: gid}, {$push: {members: uid}});
@@ -47,7 +48,7 @@ export class MembershipDao implements MembershipDaoI {
         return MembershipModel.create({member: user, group: group})
     }
 
-    public async removeUserFromGroupById(uid: string, gid: string): Promise<object> {
+    public async removeUserFromGroupById(uid: ObjectId, gid: ObjectId): Promise<object> {
         // const status =  await MembershipModel.deleteOne({member: uid, group: gid})
         // await GroupModel  // @ts-ignore
         //     .updateOne({_id: gid}, {$pull: {members: uid}});

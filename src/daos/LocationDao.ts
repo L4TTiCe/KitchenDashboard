@@ -4,6 +4,7 @@
 import {Location} from "../models/Location";
 import {LocationModel} from "../mongoose/location/LocationModel"
 import {LocationDaoI} from "./interfaces/LocationDaoI";
+import {ObjectId} from 'bson';
 
 /**
  * @class LocationDao LocationDao Implements the LocationDaoI, with all the CRUD functionalities for
@@ -26,7 +27,7 @@ export class LocationDao implements LocationDaoI {
         return this.locationDao;
     }
 
-    public async createSubLocation(lid: string, location: Location): Promise<object> {
+    public async createSubLocation(lid: ObjectId, location: Location): Promise<object> {
         const createdLocation = await LocationModel.create(location)
         return LocationModel
             .updateOne({_id: lid}, {$push: {subLocations: createdLocation._id}});
@@ -37,16 +38,16 @@ export class LocationDao implements LocationDaoI {
             .find()
     }
 
-    public async getLocationById(lid: string): Promise<Location | null> {
+    public async getLocationById(lid: ObjectId): Promise<Location | null> {
         return LocationModel
             .findById(lid)
     }
 
-    public async updateLocationById(lid: string, location: Location): Promise<object> {
+    public async updateLocationById(lid: ObjectId, location: Location): Promise<object> {
         return LocationModel.updateOne({_id: lid}, {$set: location})
     }
 
-    public async deleteLocationById(lid: string): Promise<object> {
+    public async deleteLocationById(lid: ObjectId): Promise<object> {
         return LocationModel.deleteOne({_id: lid})
     }
 

@@ -2,6 +2,7 @@
  * @file Declares API for Group related data access object methods
  */
 import {Group} from "../../models/Group";
+import {ObjectId} from 'bson';
 
 export interface GroupDaoI {
     /**
@@ -19,10 +20,10 @@ export interface GroupDaoI {
 
     /**
      * Returns the {@link Group} with the given GID
-     * @param gid {string} - the GID of the Group to be returned
+     * @param gid {ObjectId} - the GID of the Group to be returned
      * @return {Promise<Group>} - promise containing the Group with the given GID
      */
-    findGroupById(gid: string): Promise<Group | null>;
+    findGroupById(gid: ObjectId): Promise<Group | null>;
 
     /**
      * Returns the {@link Group} with the given name
@@ -33,11 +34,11 @@ export interface GroupDaoI {
 
     /**
      * Updates the {@link Group} with their GID and returns the updated Group
-     * @param gid {string} - the GID of the Group to be updated
+     * @param gid {ObjectId} - the GID of the Group to be updated
      * @param group {Group} - the data to be used to update the Group
      * @return {Promise<Group>} - promise containing the Group updated with the given data
      */
-    updateGroupById(gid: string, group: Group): Promise<object>;
+    updateGroupById(gid: ObjectId, group: Group): Promise<object>;
 
     /**
      * Updates the {@link Group} by their name and returns the updated Group
@@ -55,10 +56,10 @@ export interface GroupDaoI {
 
     /**
      * Deleted the {@link Group} by GID
-     * @param gid {string} - the GID of the Group to be deleted
+     * @param gid {ObjectId} - the GID of the Group to be deleted
      * @return {Promise<object>} the status of the delete operation
      */
-    deleteGroupById(gid: string): Promise<object>;
+    deleteGroupById(gid: ObjectId): Promise<object>;
 
     /**
      * Deleted the {@link Group} by name

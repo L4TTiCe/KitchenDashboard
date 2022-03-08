@@ -5,6 +5,7 @@ import {Express, Request, Response} from "express";
 import bodyParser from "body-parser";
 import {LocationDao} from "../daos/LocationDao";
 import {LocationControllerI} from "./interfaces/LocationControllerI";
+import {ObjectId} from 'bson';
 
 export class LocationController implements LocationControllerI {
     private static locationDao: LocationDao;
@@ -42,7 +43,7 @@ export class LocationController implements LocationControllerI {
     public createSubLocation(req: Request, res: Response): void {
         console.info(`location: createSubLocation(${req.params.id}) ${req.body}`);
 
-        LocationController.locationDao.createSubLocation(req.params.id, req.body)
+        LocationController.locationDao.createSubLocation(new ObjectId(req.params.id), req.body)
             .then((location) => res.json(location))
             .catch((status) => res.json(status));
     }
@@ -58,7 +59,7 @@ export class LocationController implements LocationControllerI {
     public getLocationById(req: Request, res: Response): void {
         console.info(`location: getLocationById(${req.params.id})`);
 
-        LocationController.locationDao.getLocationById(req.params.id)
+        LocationController.locationDao.getLocationById(new ObjectId(req.params.id))
             .then((location) => res.json(location))
             .catch((status) => res.json(status));
     }
@@ -66,7 +67,7 @@ export class LocationController implements LocationControllerI {
     public updateLocationById(req: Request, res: Response): void {
         console.info(`location: updateLocationById(${req.params.id}) ${req.body}`);
 
-        LocationController.locationDao.updateLocationById(req.params.id, req.body)
+        LocationController.locationDao.updateLocationById(new ObjectId(req.params.id), req.body)
             .then((location) => res.json(location))
             .catch((status) => res.json(status));
     }
@@ -74,7 +75,7 @@ export class LocationController implements LocationControllerI {
     public deleteLocationById(req: Request, res: Response): void {
         console.info(`location: deleteLocationById(${req.params.id})`);
 
-        LocationController.locationDao.deleteLocationById(req.params.id)
+        LocationController.locationDao.deleteLocationById(new ObjectId(req.params.id))
             .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }

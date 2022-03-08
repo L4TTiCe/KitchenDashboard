@@ -4,6 +4,7 @@
 import {Food} from "../models/Food";
 import {FoodModel} from "../mongoose/food/FoodModel";
 import {FoodDaoI} from "./interfaces/FoodDaoI";
+import {ObjectId} from 'bson';
 
 /**
  * @class FoodDao FoodDao Implements the FoodDaoI, with all the CRUD functionalities for the Food resource
@@ -35,12 +36,12 @@ export class FoodDao implements FoodDaoI {
             .find();
     }
 
-    public async findFoodById(fid: string): Promise<Food | null> {
+    public async findFoodById(fid: ObjectId): Promise<Food | null> {
         return FoodModel
             .findById(fid);
     }
 
-    public async updateFoodById(fid: string, food: Food): Promise<object> {
+    public async updateFoodById(fid: ObjectId, food: Food): Promise<object> {
         return FoodModel
             .updateOne({_id: fid}, {$set: food})
     }
@@ -50,7 +51,7 @@ export class FoodDao implements FoodDaoI {
             .deleteMany();
     }
 
-    public async deleteFoodById(fid: string): Promise<object> {
+    public async deleteFoodById(fid: ObjectId): Promise<object> {
         return FoodModel.deleteOne({_id: fid});
     }
 }

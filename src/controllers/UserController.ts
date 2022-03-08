@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import {UserDao} from "../daos/UserDao";
 import {UserControllerI} from "./interfaces/UserControllerI";
 import {User} from "../models/User";
+import {ObjectId} from 'bson';
 
 /**
  * @class UserController Implements RESTful Web service API for {@link User} resource.
@@ -82,7 +83,7 @@ export class UserController implements UserControllerI {
     public findUserById(req: Request, res: Response): void {
         console.info(`user: findUserById(${req.params.uid})`)
 
-        UserController.userDao.findUserById(req.params.uid)
+        UserController.userDao.findUserById(new ObjectId(req.params.uid))
             .then((user: User) => res.json(user))
             .catch((status) => res.json(status));
     }
@@ -106,7 +107,7 @@ export class UserController implements UserControllerI {
     public updateUserById(req: Request, res: Response): void {
         console.info(`user: updateUserById(${req.params.uid})`)
 
-        UserController.userDao.updateUserById(req.params.uid, req.body)
+        UserController.userDao.updateUserById(new ObjectId(req.params.uid), req.body)
             .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }
@@ -130,7 +131,7 @@ export class UserController implements UserControllerI {
     public deleteUserById(req: Request, res: Response): void {
         console.info(`user: deleteUserById(${req.params.uid})`)
 
-        UserController.userDao.deleteUserById(req.params.uid)
+        UserController.userDao.deleteUserById(new ObjectId(req.params.uid))
             .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }

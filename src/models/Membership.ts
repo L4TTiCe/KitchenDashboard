@@ -1,3 +1,4 @@
+import {ObjectId} from 'bson';
 import {User} from "./User";
 import {Group} from "./Group";
 
@@ -6,6 +7,7 @@ import {Group} from "./Group";
  * @typedef {Membership} Membership
  */
 export interface Membership {
+    _id: ObjectId;
     member: User;
     group: Group;
 }

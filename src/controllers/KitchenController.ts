@@ -5,6 +5,7 @@ import {Express, Request, Response} from "express";
 import bodyParser from "body-parser";
 import {KitchenDao} from "../daos/KitchenDao";
 import {KitchenControllerI} from "./interfaces/KitchenControllerI";
+import {ObjectId} from 'bson';
 
 export class KitchenController implements KitchenControllerI {
     private static kitchenDao: KitchenDao;
@@ -59,7 +60,7 @@ export class KitchenController implements KitchenControllerI {
     public findKitchenById(req: Request, res: Response): void {
         console.info(`kitchen: findKitchenById(${req.params.id})`);
 
-        KitchenController.kitchenDao.findKitchenById(req.params.id)
+        KitchenController.kitchenDao.findKitchenById(new ObjectId(req.params.id))
             .then((kitchen) => res.json(kitchen))
             .catch((status) => res.json(status));
     }
@@ -67,7 +68,7 @@ export class KitchenController implements KitchenControllerI {
     public createLocation(req: Request, res: Response): void {
         console.info(`kitchen: createLocation(${req.params.id}) ${req.body}`);
 
-        KitchenController.kitchenDao.createLocation(req.params.id, req.body)
+        KitchenController.kitchenDao.createLocation(new ObjectId(req.params.id), req.body)
             .then((kitchen) => res.json(kitchen))
             .catch((status) => res.json(status));
     }
@@ -75,7 +76,7 @@ export class KitchenController implements KitchenControllerI {
     public updateKitchenById(req: Request, res: Response): void {
         console.info(`kitchen: updateKitchenById(${req.params.id}) ${req.body}`);
 
-        KitchenController.kitchenDao.updateKitchenById(req.params.id, req.body)
+        KitchenController.kitchenDao.updateKitchenById(new ObjectId(req.params.id), req.body)
             .then((kitchen) => res.json(kitchen))
             .catch((status) => res.json(status));
     }
@@ -91,7 +92,7 @@ export class KitchenController implements KitchenControllerI {
     public deleteKitchenById(req: Request, res: Response): void {
         console.info(`kitchen: deleteKitchenById(${req.params.id})`);
 
-        KitchenController.kitchenDao.deleteKitchenById(req.params.id)
+        KitchenController.kitchenDao.deleteKitchenById(new ObjectId(req.params.id))
             .then((kitchen) => res.json(kitchen))
             .catch((status) => res.json(status));
     }

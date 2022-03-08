@@ -5,6 +5,7 @@ import {Express, Request, Response} from "express";
 import bodyParser from "body-parser";
 import {MembershipDao} from "../daos/MembershipDao";
 import {MembershipControllerI} from "./interfaces/MembershipControllerI";
+import {ObjectId} from 'bson';
 
 export class MembershipController implements MembershipControllerI {
     private static membershipDao: MembershipDao;
@@ -41,7 +42,7 @@ export class MembershipController implements MembershipControllerI {
     public addUserToGroupById(req: Request, res: Response): void {
         console.info(`membership: addUserToGroupById(gid: ${req.params.gid}, uid: ${req.params.uid})`);
 
-        MembershipController.membershipDao.addUserToGroupById(req.params.uid, req.params.gid)
+        MembershipController.membershipDao.addUserToGroupById(new ObjectId(req.params.uid), new ObjectId(req.params.gid))
             .then((membership) => res.json(membership))
             .catch((status) => res.json(status));
     }
@@ -57,7 +58,7 @@ export class MembershipController implements MembershipControllerI {
     public removeUserFromGroupById(req: Request, res: Response): void {
         console.info(`membership: removeUserFromGroupById(gid: ${req.params.gid}, uid: ${req.params.uid})`);
 
-        MembershipController.membershipDao.removeUserFromGroupById(req.params.uid, req.params.gid)
+        MembershipController.membershipDao.removeUserFromGroupById(new ObjectId(req.params.uid), new ObjectId(req.params.gid))
             .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }

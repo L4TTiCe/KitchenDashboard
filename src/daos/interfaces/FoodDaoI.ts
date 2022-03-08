@@ -2,6 +2,7 @@
  * @file Declares API for Food related data access object methods
  */
 import {Food} from "../../models/Food";
+import {ObjectId} from 'bson';
 
 export interface FoodDaoI {
     /**
@@ -19,18 +20,18 @@ export interface FoodDaoI {
 
     /**
      * Returns the {@link Food} with the given FID
-     * @param fid {string} - the FID of the Food to be returned
+     * @param fid {ObjectId} - the FID of the Food to be returned
      * @return {Promise<Food>} - promise containing the Food with the given FID
      */
-    findFoodById(fid: string): Promise<Food | null>;
+    findFoodById(fid: ObjectId): Promise<Food | null>;
 
     /**
      * Updates the {@link Food} with their FID and returns the updated Food
-     * @param fid {string} - the FID of the Food to be updated
+     * @param fid {ObjectId} - the FID of the Food to be updated
      * @param food {Food} - the data to be used to update the Food
      * @return {Promise<Food>} - promise containing the Food updated with the given data
      */
-    updateFoodById(fid: string, food: Food): Promise<object>;
+    updateFoodById(fid: ObjectId, food: Food): Promise<object>;
 
     /**
      * Deletes all Food in the DB
@@ -40,8 +41,8 @@ export interface FoodDaoI {
 
     /**
      * Deleted the {@link Food} by FID
-     * @param fid {string} - the FID of the Food to be deleted
+     * @param fid {ObjectId} - the FID of the Food to be deleted
      * @return {Promise<object>} the status of the delete operation
      */
-    deleteFoodById(fid: string): Promise<object>;
+    deleteFoodById(fid: ObjectId): Promise<object>;
 }

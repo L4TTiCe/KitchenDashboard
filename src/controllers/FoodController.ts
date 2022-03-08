@@ -5,6 +5,7 @@ import {Express, Request, Response} from "express";
 import bodyParser from "body-parser";
 import {FoodDao} from "../daos/FoodDao";
 import {FoodControllerI} from "./interfaces/FoodControllerI";
+import {ObjectId} from 'bson';
 
 export class FoodController implements FoodControllerI {
     private static foodDao: FoodDao;
@@ -58,7 +59,7 @@ export class FoodController implements FoodControllerI {
     public findFoodById(req: Request, res: Response): void {
         console.info(`food: findFoodById(${req.params.id})`);
 
-        FoodController.foodDao.findFoodById(req.params.id)
+        FoodController.foodDao.findFoodById(new ObjectId(req.params.id))
             .then((food) => res.json(food))
             .catch((status) => res.json(status));
     }
@@ -66,7 +67,7 @@ export class FoodController implements FoodControllerI {
     public updateFoodById(req: Request, res: Response): void {
         console.info(`food: updateFoodById(${req.params.id}) ${req.body}`);
 
-        FoodController.foodDao.updateFoodById(req.params.id, req.body)
+        FoodController.foodDao.updateFoodById(new ObjectId(req.params.id), req.body)
             .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }
@@ -82,7 +83,7 @@ export class FoodController implements FoodControllerI {
     public deleteFoodById(req: Request, res: Response): void {
         console.info(`food: deleteFoodById(${req.params.id})`);
 
-        FoodController.foodDao.deleteFoodById(req.params.id)
+        FoodController.foodDao.deleteFoodById(new ObjectId(req.params.id))
             .then((status) => res.json(status))
             .catch((status) => res.json(status));
     }

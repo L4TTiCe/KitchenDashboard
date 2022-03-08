@@ -2,15 +2,16 @@
  * @file Declares API for membership related data access object methods
  */
 import {Membership} from "../../models/Membership";
+import {ObjectId} from 'bson';
 
 export interface MembershipDaoI {
     /**
      * Adds User with the given UID to the group with the passed in GID
-     * @param uid {string} - the UID of the user
-     * @param gid {string} - the GID of the group
+     * @param uid {ObjectId} - the UID of the user
+     * @param gid {ObjectId} - the GID of the group
      * @return {Promise<Membership>} - promise containing the created membership object
      */
-    addUserToGroupById(uid: string, gid: string): Promise<Membership>;
+    addUserToGroupById(uid: ObjectId, gid: ObjectId): Promise<Membership>;
 
     /**
      * Adds User with the given username to the group with the passed in group name
@@ -22,11 +23,11 @@ export interface MembershipDaoI {
 
     /**
      * Adds User with the given UID to the group with the passed in GID
-     * @param uid {string} - the UID of the user
-     * @param gid {string} - the GID of the group
+     * @param uid {ObjectId} - the UID of the user
+     * @param gid {ObjectId} - the GID of the group
      * @return {Promise<Membership>} - promise containing the created membership object
      */
-    removeUserFromGroupById(uid: string, gid: string): Promise<object>;
+    removeUserFromGroupById(uid: ObjectId, gid: ObjectId): Promise<object>;
 
     /**
      * Adds User with the given username to the group with the passed in group name

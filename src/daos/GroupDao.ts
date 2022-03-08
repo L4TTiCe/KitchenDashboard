@@ -4,6 +4,7 @@
 import {Group} from "../models/Group";
 import {GroupModel} from "../mongoose/group/GroupModel";
 import {GroupDaoI} from "./interfaces/GroupDaoI";
+import {ObjectId} from 'bson';
 
 /**
  * @class GroupDao GroupDao Implements the GroupDaoI, with all the CRUD functionalities for the Group resource
@@ -42,7 +43,7 @@ export class GroupDao implements GroupDaoI {
             .populate('members');
     }
 
-    public async findGroupById(gid: string): Promise<Group | null> {
+    public async findGroupById(gid: ObjectId): Promise<Group | null> {
         return GroupModel.findById(gid)
             .populate({
                 path: 'kitchen',
@@ -65,7 +66,7 @@ export class GroupDao implements GroupDaoI {
             .populate('members');
     }
 
-    public async updateGroupById(gid: string, group: Group): Promise<object> {
+    public async updateGroupById(gid: ObjectId, group: Group): Promise<object> {
         return GroupModel
             .updateOne({_id: gid}, {$set: group});
     }
@@ -80,7 +81,7 @@ export class GroupDao implements GroupDaoI {
             .deleteMany();
     }
 
-    public async deleteGroupById(gid: string): Promise<object> {
+    public async deleteGroupById(gid: ObjectId): Promise<object> {
         return GroupModel
             .deleteOne({_id: gid});
     }
