@@ -36,11 +36,35 @@ export class LocationDao implements LocationDaoI {
     public async getAllLocations(): Promise<Location[]> {
         return LocationModel
             .find()
+            // Handled recursively in LocationSchema :- autoPopulateSubLocations
+            // .populate(
+            //     {
+            //         path: 'contents',
+            //         populate: {
+            //             path: 'food',
+            //             populate: {
+            //                 path: 'nutrition'
+            //             }
+            //         }
+            //     }
+            // );
     }
 
     public async getLocationById(lid: ObjectId): Promise<Location | null> {
         return LocationModel
             .findById(lid)
+            // Handled recursively in LocationSchema :- autoPopulateSubLocations
+            // .populate(
+            //     {
+            //         path: 'contents',
+            //         populate: {
+            //             path: 'food',
+            //             populate: {
+            //                 path: 'nutrition'
+            //             }
+            //         }
+            //     }
+            // );
     }
 
     public async updateLocationById(lid: ObjectId, location: Location): Promise<object> {

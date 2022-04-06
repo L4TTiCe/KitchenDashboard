@@ -22,7 +22,18 @@ LocationSchema.add({
 // https://stackoverflow.com/questions/44968248/how-to-populate-documents-with-unlimited-nested-levels-using-mongoose
 function autoPopulateSubLocations(this: any, next: () => void) {  // eslint-disable-line @typescript-eslint/no-explicit-any
     console.log("pre-hook running for LocationSchema - autoPopulateSubLocations");
-    this.populate('subLocations contents');
+    // this.populate('subLocations contents')
+    this
+        .populate({
+            path: 'contents',
+            populate: {
+                path: 'food',
+                populate: {
+                    path: 'nutrition'
+                }
+            }
+        })
+        .populate('subLocations');
     next();
 }
 

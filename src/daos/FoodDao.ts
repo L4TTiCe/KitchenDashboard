@@ -33,12 +33,14 @@ export class FoodDao implements FoodDaoI {
 
     public async findAllFood(): Promise<Food[]> {
         return FoodModel
-            .find();
+            .find()
+            .populate("nutrition");
     }
 
     public async findFoodById(fid: ObjectId): Promise<Food | null> {
         return FoodModel
-            .findById(fid);
+            .findById(fid)
+            .populate("nutrition");
     }
 
     public async updateFoodById(fid: ObjectId, food: Food): Promise<object> {
