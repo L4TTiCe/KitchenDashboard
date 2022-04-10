@@ -41,6 +41,15 @@ const connectDatabase = (): void => {
 const initializeApp = (): express.Express => {
     const app = express();
 
+    app.use(function (req: Request, res: Response, next ) {
+        res.setHeader('Access-Control-Allow-Origin', req.header('origin') || '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
+        // @ts-ignore
+        res.setHeader('Access-Control-Allow-Credentials', true);
+        next();
+    })
+
     UserController.getInstance(app);
     GroupController.getInstance(app);
     KitchenController.getInstance(app);
