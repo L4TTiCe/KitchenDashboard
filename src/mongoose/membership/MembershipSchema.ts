@@ -18,6 +18,8 @@ async function autoInsertIntoGroup(this: any, next: () => void) {  // eslint-dis
     console.log("pre-hook running for MembershipSchema - autoInsertIntoGroup");
     // return this.model('GroupModel').updateOne({_id: this.group._id}, {$push: {members: this.member._id}});
     await GroupModel
+        .updateOne({_id: this.group._id}, {$pull: {members: this.member._id}});
+    await GroupModel
         .updateOne({_id: this.group._id}, {$push: {members: this.member._id}});
     next();
 }
