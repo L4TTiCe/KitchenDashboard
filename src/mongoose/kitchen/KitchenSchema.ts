@@ -9,6 +9,6 @@ import mongoose from "mongoose";
  */
 export const KitchenSchema = new mongoose.Schema({
     name: {type: String, trim: true},
-    usingSince: {type: Date, default: Date.now},
+    using_since: {type: Date, default: Date.now},
     locations: [{type: mongoose.Schema.Types.ObjectId, ref: "LocationModel"}],
 }, {collection: "kitchens"})

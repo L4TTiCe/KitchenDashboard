@@ -8,5 +8,6 @@ import {ObjectId} from 'bson';
 export interface Kitchen {
     _id: ObjectId;
     name: string;
+    using_since: Date;
     locations: Location[];
 }
