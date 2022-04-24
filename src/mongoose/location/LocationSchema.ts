@@ -26,12 +26,14 @@ function autoPopulateSubLocations(this: any, next: () => void) {  // eslint-disa
     this
         .populate({
             path: 'contents',
-            populate: {
+            populate: [{
                 path: 'food',
                 populate: {
                     path: 'nutrition'
                 }
-            }
+            }, {
+                path: 'owner'
+            }]
         })
         .populate('subLocations');
     next();
