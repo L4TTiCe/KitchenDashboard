@@ -7,3 +7,18 @@
 This Project helps maintain an inventory of all food items purchased, tracking their location (within the kitchen, could
 be a named cupboard, the refrigerator, etc.,), nutritional information (including calories, carbohydrates, proteins,
 etc.,), and ownership, within a single kitchen.
+
+### How to Run?
+
+This project uses Docker to help with setting up the project in different platforms. To have a running instance of the bundled application and a mongoDB instance for the application use, Run the following command:
+ 
+ ```bash
+ docker-compose up
+ ```
+ 
+ If you already have npm setup in your machine, you can use the following shortcut:
+  ```npm
+npm run docker
+# Which is shortcut for
+# "docker-compose up --build --remove-orphans --force-recreate"
+ ```
