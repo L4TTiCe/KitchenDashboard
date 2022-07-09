@@ -8,6 +8,8 @@ This Project helps maintain an inventory of all food items purchased, tracking t
 be a named cupboard, the refrigerator, etc.,), nutritional information (including calories, carbohydrates, proteins,
 etc.,), and ownership, within a single kitchen.
 
+This repository contains the backend for the project, build using Express on Node. The frontend is available at [github.com/L4TTiCe/kitchen-dashboard](https://github.com/L4TTiCe/kitchen-dashboard).
+
 ### How to Run?
 
 This project uses Docker to help with setting up the project in different platforms. To have a running instance of the bundled application and a mongoDB instance for the application use, Run the following command:
